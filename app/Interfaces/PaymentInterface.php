@@ -8,5 +8,5 @@ interface PaymentInterface
    * @param float $amount 
    * @return mixed 
    */
-  public function pay(float $amount);
+  public function pay(float $amount): string;
 }

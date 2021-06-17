@@ -18,6 +18,7 @@ class PaymentController extends Controller
     {
         return response()->json([
             'data' => $this->paymentService->pay(250.0),
+            'header' => request()->header('X-Payment-Provider')
         ]);
     }
 }
