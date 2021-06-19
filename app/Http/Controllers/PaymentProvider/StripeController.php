@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\PaymentProvider;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\PaymentInterface;
+use App\Contracts\PaymentInterface;
 use Illuminate\Http\Request;
 
 class StripeController extends Controller

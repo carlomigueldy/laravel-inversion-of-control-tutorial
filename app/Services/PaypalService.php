@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interfaces\PaymentInterface;
+use App\Contracts\PaymentInterface;
 
 class PaypalService implements PaymentInterface
 {
