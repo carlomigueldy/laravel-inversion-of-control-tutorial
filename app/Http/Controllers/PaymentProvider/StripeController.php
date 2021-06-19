@@ -18,7 +18,7 @@ class StripeController extends Controller
     public function index()
     {
         return response()->json([
-            'data' => $this->paymentService->pay(250.0),
+            'data' => $this->paymentService->pay(10.0),
         ]);
     }
 }
