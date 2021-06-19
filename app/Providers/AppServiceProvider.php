@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Http\Controllers\PaymentProvider\PaypalController;
 use App\Http\Controllers\PaymentProvider\SquarePayController;
 use App\Http\Controllers\PaymentProvider\StripeController;
-use App\Interfaces\PaymentInterface;
+use App\Contracts\PaymentInterface;
 use App\Services\PaypalService;
 use App\Services\SquarePayService;
 use App\Services\StripeService;
