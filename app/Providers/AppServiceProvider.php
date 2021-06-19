@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\PaymentProvider\PaypalController;
+use App\Http\Controllers\PaymentProvider\SquarePayController;
+use App\Http\Controllers\PaymentProvider\StripeController;
 use App\Interfaces\PaymentInterface;
 use App\Services\PaypalService;
 use App\Services\SquarePayService;
@@ -18,23 +21,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (!$this->app->request->has('X-Payment-Provider')) {
-            return $this->app->bind(PaymentInterface::class, StripeService::class);
-        }
+        $this->app->when(PaypalController::class)
+            ->needs(PaymentInterface::class)
+            ->give(PaypalService::class);
 
-        switch ($this->app->request->header('X-Payment-Provider')) {
-            case 'STRIPE':
-                return $this->app->bind(PaymentInterface::class, StripeService::class);
+        $this->app->when(StripeController::class)
+            ->needs(PaymentInterface::class)
+            ->give(StripeService::class);
 
-            case 'PAYPAL':
-                return $this->app->bind(PaymentInterface::class, PaypalService::class);
-
-            case 'SQUAREPAY':
-                return $this->app->bind(PaymentInterface::class, SquarePayService::class);
-
-            default:
-                return $this->app->bind(PaymentInterface::class, StripeService::class);
-        }
+        $this->app->when(SquarePayController::class)
+            ->needs(PaymentInterface::class)
+            ->give(SquarePayService::class);
     }
 
     /**

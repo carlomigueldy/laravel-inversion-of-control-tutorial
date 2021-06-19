@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PaymentProvider;
 
+use App\Http\Controllers\Controller;
 use App\Interfaces\PaymentInterface;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class StripeController extends Controller
 {
     private $paymentService;
     
@@ -18,7 +19,6 @@ class PaymentController extends Controller
     {
         return response()->json([
             'data' => $this->paymentService->pay(250.0),
-            'header' => request()->header('X-Payment-Provider')
         ]);
     }
 }
